@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="Header :: header"/>
+<div style="align:center;" class="head">
+    <!--inserting text-->
+</div>
+<div class="container">
+
+    <br/>
+    <div style="float:left; width:50%;">
+        <h2>Ground Rides</h2>
+    <!--inserting images-->
+        <a href="/rides/ground">
+        <img class = "img-class" src="https://www.verywellfamily.com/thmb/8QHDzEB3vTVO93LfH009qQASU5Y=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/roller-coaster-149508746-57ac7eb45f9b58974ace1b67.jpg"  alt="Ground Rides" >
+        </a>
+    </div>
+
+    <div style="float:right; width:50%;">
+        <h2>Water Rides</h2>
+        <!--inserting images-->
+        <a href="/rides/water">
+        <img class = "img-class" src="https://obergatlinburg.com/wp-content/uploads/2018/10/water-ride-2.jpg"  alt="Water Rides" >
+        </a>
+    </div>
+</div>
+<h2><a th:href="@{/reservations}">VIEW CURRENT RESERVATIONS</a></h2>
+<h2><a th:href="@{/reserve}">MAKE A NEW RESERVATION</a></h2>
+</body>
+</html>

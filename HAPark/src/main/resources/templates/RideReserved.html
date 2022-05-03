@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ride Reserved</title>
+</head>
+<body>
+<div th:replace="Header :: header"/>
+<h3>You have reserved a ride of
+    <strong th:text=${rideReserved.name}></strong>
+    <strong>for the</strong> <span th:text=${timeslot}></span>
+    <strong> for </strong> <span th:text=${ride.reserveSeats}></span><strong> people </strong>
+    <h2><a th:href="@{/reservations}">VIEW CURRENT RESERVATIONS</a></h2>
+    <h2><a th:href="@{/reserve}">MAKE A NEW RESERVATION</a></h2>
+</h3>
+</body>
+</html>

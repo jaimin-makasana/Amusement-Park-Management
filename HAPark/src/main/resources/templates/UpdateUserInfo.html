@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Update User Information</title>
+  </head>
+  <body>
+    <div th:replace="Header :: header"/>
+    <p></p>
+    <table style="margin-left: auto; margin-right: auto;">
+      <tbody>
+        <tr>
+          <td style="height: 50px;">Update User Information</td>
+        </tr>
+      </tbody>
+    </table>
+    <table border="black" style="margin-left: auto; margin-right: auto;">
+      <tbody>
+        <form class="pure-form" action="#" th:action="@{/updateuserinfo}" th:object="${user}" method="post" >
+         <tr>
+           <td>
+             <label>Email</label>
+           </td>
+           <td>
+             <input type="text" placeholder="email" th:field="*{email}"/>
+           </td>
+         </tr>
+          <tr>
+            <td>
+              <label>Old Password</label>
+            <!--https://www.w3schools.com/howto/howto_js_password_validation.asp-->
+            </td>
+            <td>
+              <input type="password" id="txtOldPassword" placeholder="Old Password" th:field="*{oldPassword}" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>New Password</label>
+            </td>
+            <td>
+              <input type="password" id="txtNewPassword" placeholder="New Password" th:field="*{password}" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Confirm Password</label>
+            </td>
+            <td>
+              <input type="password" id="txtConfirmPassword" placeholder="Confirm Password"th:field="*{confirmedPassword}" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" id="btnSubmit" value="Submit" onclick="return Validate()">Submit</button>
+            </td>
+          </tr>
+        </form>
+        <div th:if="${result != null}">
+          <script th:inline="javascript">
+            window.alert([[${result.resultMessage}]]);
+          </script>
+        </div>
+
+        <!--https://www.w3schools.com/howto/howto_js_password_validation.asp-->
+      <script type="text/javascript">
+        function Validate() {
+            var oldPassword = document.getElementById("txtOldPassword").value;
+            var newPassword = document.getElementById("txtNewPassword").value;
+            var confirmPassword = document.getElementById("txtConfirmPassword").value;
+
+        if((oldPassword == newPassword) && (newPassword == confirmPassword)) {
+           alert("Old and New Passwords should not be same.");
+           return false;
+        }
+        else if(newPassword != confirmPassword){
+            alert("New and Confirm Passwords do not match.");
+            return false;
+        }
+        else if((newPassword.length < 8) || (newPassword.length > 12)){
+            alert("Password length should have 8 characters and must not exceed 12 characters.");
+            return false;
+        }
+        else if(!(newPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$"))) {
+            alert("Password should have alteast one uppercase, one lower case, one special character,one digit.");
+            return false;
+        }
+        else
+        {
+            alert("Your password is changed.");
+            return true;
+        }
+
+        return true;
+        }
+        </script>
+      </tbody>
+    </table>
+  </body>
+</html>

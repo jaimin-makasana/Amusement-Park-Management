@@ -1,0 +1,28 @@
+<!--
+Used this source to learn how to create and user thymeleaf fragments
+https://www.baeldung.com/spring-thymeleaf-fragments
+
+Used this source to learn how to access the user from spring security using thymeleaf
+https://www.baeldung.com/spring-security-thymeleaf
+-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="header">
+    <table style="border-collapse: collapse; width: 100%; text-align: right;" border="1">
+        <tr>
+            <td><a href="/main">Main</a></td>
+            <td><a href="/cartsummary">Cart</a></td>
+
+            <div sec:authorize="!hasRole('ROLE_ANONYMOUS')">
+                <td><a href="/reservations">Reservations</a></td>
+                <td><a href="/account">Account</a></td>
+                <td><a href="/logout">Logout</a></td>
+            </div>
+
+            <div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+                <td><a href="/login">Login</a></td>
+                <td><a href="/register">Register</a></td>
+            </div>
+        </tr>
+    </table>
+</div>

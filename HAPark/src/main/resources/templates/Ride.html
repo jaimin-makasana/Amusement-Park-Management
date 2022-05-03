@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div th:replace="Header :: header"/>
+<table border="black">
+    <tr>
+        <td>ID</td>
+        <td>RIDE</td>
+        <td>RIDE TYPE</td>
+        <td>DURATION</td>
+    </tr>
+    <tr th:each="ride:${allrides}">
+        <td th:text="${ride.id}"></td>
+        <td th:text="${ride.name}"></td>
+        <td th:text="${ride.type}"></td>
+        <td th:text="${ride.duration}"></td>
+    </tr>
+</table>
+
+<body>
+</body>
+</html>

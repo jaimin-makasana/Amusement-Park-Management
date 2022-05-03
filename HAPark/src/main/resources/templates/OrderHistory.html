@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+</head>
+<body>
+<div th:replace="Header :: header"/>
+<div style="text-align: center; margin-top: 5%;">
+
+  <p>Order history:&nbsp;</p>
+  <p>
+  <select id="type" onchange="javascript:location.href = /orders/ + value;">
+    <option selected disabled>select order type</option>
+    <option value="tickets">Tickets</option>
+    <option value="food">Food</option>
+  </select>
+  </p>
+  <table style="margin-left: auto; margin-right: auto; width: 50%; text-align: left;">
+    <tbody style="outline: thin solid black;">
+
+    <tr style="outline: thin solid black">
+      <td style="width: 25%; text-align: left;">Date</td>
+      <td style="width: 25%;">Item</td>
+      <td style="width: 25%;">Qty</td>
+      <td style="width: 25%;">Cost</td>
+    </tr>
+
+    <th:block th:each="order : ${orders}">
+
+      <tr>
+      <td style="width: 25%;" th:text="${order.orderDate}"/>
+
+      <tr th:each="orderItem : ${order.orderItems}">
+        <td style="width: 25%;"/>
+        <td style="width: 25%;" th:text="${orderItem.name}"/>
+        <td style="width: 25%;" th:text="${orderItem.quantity}"/>
+        <td style="width: 25%;" th:text="'$'+${orderItem.totalPrice}"/>
+      </tr>
+
+    </th:block>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

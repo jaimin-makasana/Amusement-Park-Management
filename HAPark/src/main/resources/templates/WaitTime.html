@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div>
+    <h1>WAITING TIME</h1>
+    <div style="float:left;">
+    <table border="black">
+        <tr>
+            <td>RIDE ID</td>
+            <td>RIDE NAME</td>
+        </tr>
+        <tr th:each="ride:${allrides}">
+            <td th:text="${ride.id}"></td>
+            <td th:text="${ride.name}"></td>
+        </tr>
+    </table>
+    </div>
+    <div style="float:left;">
+        <table border="black">
+            <tr>
+                <td>MORINING SLOT</td>
+                <td>NOON SLOT</td>
+                <td>EVENING SLOT</td>
+            </tr>
+            <tr th:each="wti:${wts}">
+                <td th:text="${wti.get(1)}"></td>
+                <td th:text="${wti.get(2)}"></td>
+                <td th:text="${wti.get(3)}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<body>
+</body>
+</html>

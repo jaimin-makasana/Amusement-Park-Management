@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Summary</title>
+</head>
+<div th:replace="Header :: header"/>
+
+<table style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <td style="height: 50px;">CART SUMMARY</td>
+    </tr>
+</table>
+
+<!--https://www.baeldung.com/thymeleaf-in-spring-mvc-->
+<table border="black" style="margin-left: auto; margin-right: auto;">
+
+    <tr th:each="ticketOrderItem:${cartSummary.ticket}">
+        <td>TICKET TYPE</td>        <td th:text="${ticketOrderItem.ticketType}"></td>
+        <td>TICKET QUANTITY</td>    <td th:text="${ticketOrderItem.quantity}"></td>
+        <td>TICKET PRICE</td>       <td th:text="${ticketOrderItem.totalPrice}"></td>
+    </tr>
+    <tr th:each="foodOrderItem:${cartSummary.food}">
+        <td>FOOD ID</td>        <td th:text="${foodOrderItem.name}"></td>
+        <td>FOOD QUANTITY</td>  <td th:text="${foodOrderItem.quantity}"></td>
+        <td>FOOD PRICE</td>     <td th:text="${foodOrderItem.totalPrice}"></td>
+    </tr>
+    <tr>
+        <td>TOTAL AMOUNT</td>    <td th:text="${cartSummary.totalAmount}"></td>
+    </tr>
+    <tr>
+        <form action="/payment" method="GET">
+            <td><input type="submit"value="Payment" /></td>
+        </form>
+    </tr>
+</table>
+
+<body>
+</body>
+</html>

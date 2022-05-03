@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div th:replace="Header :: header"/>
+<div>
+<h1>RIDES</h1>
+<div style="float:left;">
+<table border="black">
+    <tr>
+        <td>ID</td>
+        <td>RIDE</td>
+        <td>RIDE TYPE</td>
+        <td>DURATION</td>
+    </tr>
+    <tr th:each="ride:${allrides}">
+        <td th:text="${ride.id}"></td>
+        <td th:text="${ride.name}"></td>
+        <td th:text="${ride.type}"></td>
+        <td th:text="${ride.duration}"></td>
+    </tr>
+</table>
+    <table border="black">
+        <tr th:each="res:${re}">
+            <td th:text="${res.rideId}"></td>
+            <td th:text="${res.timeslotId}"></td>
+        </tr>
+    </table>
+</div>
+<div style="float:left;">
+<table border="black">
+    <tr>
+        <td>MORINING SLOT</td>
+        <td>NOON SLOT</td>
+        <td>EVENING SLOT</td>
+    </tr>
+    <tr th:each="map:${maps}">
+        <td th:text="${map.get(1)}"></td>
+        <td th:text="${map.get(2)}"></td>
+        <td th:text="${map.get(3)}"></td>
+    </tr>
+</table>
+</div>
+</div>
+<div style="float:right; margin-left:10px;">
+<h1>RIDE RESERVATION FORM</h1>
+<form th:action="@{/reserved}" th:object="${ride}" method="post">
+    <label>Ride ID</label>
+    <input type="number" min="1" th:field="*{rideId}"/>
+    <br>
+    <br>
+    <label>Timeslot: </label>
+    <select name="Timeslot test" th:field="*{timeslotId}">
+        <option th:value=1 >Morning</option>
+        <option th:value=2>Afternoon</option>
+        <option th:value=3>Evening</option>
+    </select>
+    <br>
+    <br>
+    <label>Number of seats to reserve</label>
+    <input type="number" min="1" th:field="*{reserveSeats}"/>
+    <br>
+    <br>
+    <button type="submit">Reserve</button>
+</form>
+</div>
+<div style="float:left">
+<p><a th:href="@{/rides/waittime}">CHECK WAITING TIME</a></p>
+</div>
+<body>
+</body>
+</html>

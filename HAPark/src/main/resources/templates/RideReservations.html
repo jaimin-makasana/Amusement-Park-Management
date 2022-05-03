@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div th:replace="Header :: header"/>
+<div th:if="${#lists.isEmpty(reservations)}">
+    <h1>Opps you have no active ride reservations!</h1>
+    <h1><a th:href="@{/reserve}">Make a new Reservation</a></h1>
+</div>
+<div th:unless="${#lists.isEmpty(reservations)}">
+    <table border="black" style="float:left">
+        <tr th:each="rideName:${rideNames}">
+            <td th:text=${rideName}></td>
+        </tr>
+    </table>
+    <table border="black" style="float:left">
+        <tr th:each="timeSlotName:${timeSlotNames}">
+            <td th:text=${timeSlotName}></td>
+        </tr>
+    </table >
+    <table border="black" style="float:left">
+        <tr th:each="r:${reservations}">
+            <td th:text="${r.reserveSeats}"></td>
+        </tr>
+    </table>
+</div>
+<div style="float: right;">
+    <br>
+    <h1><a th:href="@{/reserve}">Reserve new ride</a></h1>
+</div>
+<body>
+</body>
+</html>

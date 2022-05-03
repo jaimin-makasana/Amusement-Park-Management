@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Payment Gateway</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<div th:replace="Header :: header"/>
+
+<body>
+<h1>Payment Gateway</h1>
+<form action="#" th:action="@{/payment}" th:object="${payment}" method="post">
+    <input type="radio" th:field="*{ctype}" id="c" value="credit"/>
+    <label for="c">Credit Card</label>
+    <input type="radio" th:field="*{ctype}" id="d" value="debit"/>
+    <lable for="d">Debit Card</lable>
+    <p><input type="text" id="cno" placeholder="Card Number" th:field="*{cno}" /></p>
+    <p><input type="text" id="mm" placeholder="MM" th:field="*{mm}" size="2"/>
+        <input type="text" id="yy" placeholder="YY" th:field="*{yy}" size="2"/></p>
+    <p><input type="password" id="cvv" placeholder="CVV" th:field="*{cvv}" /></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset" /></p>
+</form>
+<div th:if="${payment.errormsg != null}">
+    <script th:inline="javascript">
+        window.alert([[${payment.errormsg.resultMessage}]]);
+        if ([[${payment.errormsg.resultMessage == 'success'}]]){
+            window.location.href = "submitorder";
+        }
+    </script>
+</div>
+</body>
+</html>

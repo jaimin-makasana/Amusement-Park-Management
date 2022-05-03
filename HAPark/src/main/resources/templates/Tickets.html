@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+</head>
+<body>
+<div th:replace="Header :: header"/>
+<table style="margin-left: auto; margin-right: auto;">
+    <tbody>
+    <td style="height: 50px;">Tickets</td>
+    </tbody>
+</table>
+<table  style="margin-left: auto; margin-right: auto;">
+    <tbody>
+    <form action="#" th:action="@{/tickets/update}" method="post" th:object="${ticketOrderList}">
+        <tr th:each="ticket,stat : ${tickets}">
+
+            <td style="height:50px; width:150px" th:text="${ticket.ticketType}" />
+            <td style="height:50px;">$<td th:text="${ticket.ticketPrice}" />
+
+            <td>
+                <input type="number" min="0" max="10" placeholder="0"
+                       th:name="*{'ticketOrderList[__${stat.index}__].quantity'}"/>
+
+                <input type="hidden"
+                       th:value="${ticket.ticketType}"
+                       th:name="*{'ticketOrderList[__${stat.index}__].ticketType'}"/>
+                <input type="hidden"
+                       th:value="${ticket.ticketPrice}"
+                       th:name="*{'ticketOrderList[__${stat.index}__].ticketPrice'}"/>
+            </td>
+
+        </tr>
+        <tr>
+            <td><input type="submit"value="Submit" /><input type="reset" value="Reset" /></td>
+        </tr>
+    </form>
+    <div th:if="${message != null}">
+        <script th:inline="javascript">
+            window.alert([[${message}]]);
+        </script>
+    </div>
+    </tbody>
+</table>
+</body>
+</html>
